@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('/');
 })->name('dashboard');
 
 Route::middleware(['user'])->group(function () {
