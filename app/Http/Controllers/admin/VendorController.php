@@ -11,16 +11,19 @@ use Illuminate\Support\Facades\Hash;
 
 class VendorController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $vendor = Vendor::all();
         return view('admin.vendor.index', compact('vendor'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('admin.vendor.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $nama_pt = $request->nama_pt;
         $email = $request->email;
         $alamat = $request->alamat;
@@ -31,6 +34,7 @@ class VendorController extends Controller
             'nama_pt' => 'required|unique:vendor|max:35',
             'email' => 'required|unique:vendor|max:35',
         ]);
+        
 
         $data_vendor = [
             'nama_pt' => $nama_pt,
@@ -53,7 +57,8 @@ class VendorController extends Controller
         return redirect('/vendor');
     }
 
-    public function edit($kd_vendor){
+    public function edit($kd_vendor)
+    {
         $vendor = DB::table('vendor')->where('kd_vendor', $kd_vendor)->first();
         $user = DB::table('users')->where('email', $vendor->email)->first();
 
@@ -61,8 +66,8 @@ class VendorController extends Controller
         return view('admin.vendor.edit', compact('vendor'));
     }
 
-    public function update(Request $request, $kd_vendor){
-
+    public function update(Request $request, $kd_vendor)
+    {
         $nama_pt = $request->nama_pt;
         $email = $request->email;
         $alamat = $request->alamat;
@@ -92,7 +97,8 @@ class VendorController extends Controller
         return redirect('/vendor');
     }
 
-    public function destroy($kd_vendor){
+    public function destroy($kd_vendor)
+    {
         $vendor = DB::table('vendor')->where('kd_vendor', $kd_vendor)->first();
         $user = DB::table('users')->where('email', $vendor->email)->first();
 

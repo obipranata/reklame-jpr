@@ -13,12 +13,14 @@ use Symfony\Component\VarDumper\Cloner\Data;
 
 class DataReklameController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data_reklame = DB::select("SELECT data_reklame.*, jenis_reklame.nama_reklame, wilayah.nama_wilayah FROM data_reklame, jenis_reklame, wilayah WHERE data_reklame.kd_jenis = jenis_reklame.kd_jenis AND wilayah.kd_wilayah = data_reklame.kd_wilayah");
         return view('admin.datareklame.index', compact('data_reklame'));
     }
 
-    public function create(){
+    public function create()
+    {
         $data['data_reklame'] = DB::select("SELECT data_reklame.*, jenis_reklame.nama_reklame, wilayah.nama_wilayah FROM data_reklame, jenis_reklame, wilayah WHERE data_reklame.kd_jenis = jenis_reklame.kd_jenis AND wilayah.kd_wilayah = data_reklame.kd_wilayah");
         $data['jenis_reklame'] = Jenis_reklame::all();
         $data['wilayah'] = Wilayah::all();
@@ -26,7 +28,8 @@ class DataReklameController extends Controller
         return view('admin.datareklame.create', $data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $ukuran = $request->ukuran;
         $harga = $request->harga;
         $status = 0;
@@ -63,7 +66,8 @@ class DataReklameController extends Controller
         return redirect('/datareklame');
     }
 
-    public function edit($kd_reklame){
+    public function edit($kd_reklame)
+    {
         $data['data_reklame'] = DB::select("SELECT data_reklame.*, jenis_reklame.nama_reklame, wilayah.nama_wilayah FROM data_reklame, jenis_reklame, wilayah WHERE data_reklame.kd_jenis = jenis_reklame.kd_jenis AND wilayah.kd_wilayah = data_reklame.kd_wilayah");
         $data['reklame'] = DB::table('data_reklame')->where('kd_reklame', $kd_reklame)->first();
         $data['jenis_reklame'] = Jenis_reklame::all();
@@ -73,13 +77,13 @@ class DataReklameController extends Controller
         return view('admin.datareklame.edit', $data);
     }
 
-    public function update(Request $request, $kd_reklame){
-
+    public function update(Request $request, $kd_reklame)
+    {
         $reklame = DB::table('data_reklame')->where('kd_reklame', $kd_reklame)->first();
 
-        if(!$request->foto){
+        if (!$request->foto) {
             $namaFoto = $reklame->foto;
-        }else{
+        } else {
             $request->validate([
                 'foto' => 'mimes:jpg,png'
             ]);
@@ -116,8 +120,9 @@ class DataReklameController extends Controller
         return redirect('/datareklame');
     }
 
-    public function destroy($kd_reklame){
-        Data_reklame::where('kd_reklame',$kd_reklame)->delete();
+    public function destroy($kd_reklame)
+    {
+        Data_reklame::where('kd_reklame', $kd_reklame)->delete();
         return redirect('/datareklame');
     }
 }
