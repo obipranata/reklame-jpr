@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class PesananController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $user = $request->user();
         $email = $user->email;
 
@@ -18,7 +19,8 @@ class PesananController extends Controller
         return view('vendor.pesanan', compact('pesanan'));
     }
 
-    public function verifikasi(Request $request){
+    public function verifikasi(Request $request)
+    {
         $user = $request->user();
         $email = $user->email;
 
@@ -26,7 +28,7 @@ class PesananController extends Controller
 
         // dd($pesanan);
 
-        foreach ($pesanan as $p){
+        foreach ($pesanan as $p) {
             $lama_sewa = $p->lama_sewa * 30;
             $tgl_penurunan = date('Y-m-d', strtotime((date($p->tgl_pesan)) . "+ $lama_sewa day"));
             $tgl1 = new DateTime(date('Y-m-d'));
@@ -35,7 +37,7 @@ class PesananController extends Controller
             $selisih = $diff->format('%r%a');
 
             // var_dump($selisih);
-            if ($selisih >= 0){
+            if ($selisih >= 0) {
                 DB::table('pesanan')->where('kd_pesan', $p->kd_pesan)->update(['status' => 'selesai']);
                 DB::table('data_reklame')->where('kd_reklame', $p->kd_reklame)->update(['status' => 0]);
             }
@@ -47,11 +49,12 @@ class PesananController extends Controller
         return view('vendor.bukti_bayar', compact('bukti_bayar'));
     }
 
-    public function updatebayar(Request $request, $kd_pesan){
+    public function updatebayar(Request $request, $kd_pesan)
+    {
         $status = $request->status;
         DB::table('pesanan')->where('kd_pesan', $kd_pesan)->update(['status' => $status]);
 
-        if($status == 'verifikasi sukses'){
+        if ($status == 'verifikasi sukses') {
             $data_pengajuan = [
                 'kd_pesan' => $kd_pesan,
                 'foto_bukti' => null,
@@ -62,21 +65,23 @@ class PesananController extends Controller
 
         return redirect('/vendor/buktibayar');
     }
-    public function updatepesan(Request $request, $kd_pesan){
+    public function updatepesan(Request $request, $kd_pesan)
+    {
         $status = $request->status;
         DB::table('pesanan')->where('kd_pesan', $kd_pesan)->update(['status' => $status]);
 
         return redirect('/vendor/pesanan');
     }
 
-    public function hapus($kd_pesan){
+    public function hapus($kd_pesan)
+    {
         $pesanan = DB::table('pesanan')->where('kd_pesan', $kd_pesan)->first();
         $kd_reklame = $pesanan->kd_reklame;
         
         $data_pesanan = DB::select("SELECT * FROM pesanan WHERE kd_reklame = '$kd_reklame' AND status != 'selesai' AND status != 'belum upload bukti pembayaran' ");
 
         
-        if(empty($data_pesanan)){
+        if (empty($data_pesanan)) {
             DB::table('data_reklame')->where('kd_reklame', $kd_reklame)->update(['status' => 0]);
         }
         DB::table('pesanan')->where('kd_pesan', $kd_pesan)->delete();
