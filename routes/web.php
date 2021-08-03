@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('/');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 Route::middleware(['user'])->group(function () {
     Route::get('/', 'UserController@index');
