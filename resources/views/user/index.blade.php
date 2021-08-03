@@ -34,33 +34,51 @@ data-stellar-background-ratio="0.5"
 <section class="ftco-section bg-light ftco-no-pt ftco-intro">
 <div class="container">
   <div class="row">
-    <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
+    <div class="col-md-6 d-flex align-self-stretch px-4 ftco-animate">
       <div class="d-block services text-center">
         <div class="media-body">
-          <h3 class="heading">BAPENDA</h3>
+          <h3 class="heading">Visi</h3>
           <p>
-            Memonitoring reklame, menambah titik lokasi reklame,
-            mengupdate batas waktu penggunaan reklame.
+            “Terwujudnya Pendapatan Daerah Yang Dinamis
+              Dan Optimal Guna Menunjang Kemandirian
+              Keuangan Daerah Kota Jayapura”
           </p>
         </div>
       </div>
     </div>
-    <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
-      <div class="d-block services text-center">
+    <div class="col-md-6 d-flex align-self-stretch px-4 ftco-animate">
+      <div class="d-block services">
         <div class="media-body">
-          <h3 class="heading">Vendor</h3>
-          <p>
-            Menerima pesanan, input berkas surat izin pemasangan iklan dan
-            menginput data reklame.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
-      <div class="d-block services text-center">
-        <div class="media-body">
-          <h3 class="heading">Dinas Penanaman Modal & PTSP</h3>
-          <p>Verifikasi surat izin reklame.</p>
+          <h3 class="heading text-center">Misi</h3>
+          <ol>
+            <li>
+              Menggali dan mengembangkan sumber-sumber pendapatan lainnya melalui intensifikasi dan ekstensifikasi.
+            </li>
+            <li>
+              Terciptanya sistem informasi Pengelolaan Pendapatan Daerah secara efektif, Transparan dan Akuntabel
+            </li>
+            <li>
+              Meningkatkan kemampuan sumber daya manusia.
+            </li>
+            <li>
+              Meningkatkan pelayanan yang cepat, tepat dan memuaskan
+            </li>
+            <li>
+              Meningkatkan sosialisasi PAD terhadap masyarakat.
+            </li>
+            <li>
+              Meningkatkan kemitraan dengan pihak ke tiga.
+            </li>
+            <li>
+              Meningkatkan koordinasi dengan instansi teknis terkait.
+            </li>
+            <li>
+              Meningkatkan pengawasan dan penertiban aparatur pengelola PAD
+            </li>
+            <li>
+              Meningkatkan sarana dan prasarana yang memadai.
+            </li>
+          </ol>
         </div>
       </div>
     </div>
