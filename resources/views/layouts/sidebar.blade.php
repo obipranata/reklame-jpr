@@ -59,7 +59,7 @@
                         @elseif(Auth::user()->level == 4)
                             <a class="nav-link {{ Request::segment(2) == 'izinvendor' ? 'active' : '' }}" href="/dinas/izinvendor">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sticky-note"></i></div>
-                                Izin Vendor
+                                Izin Reklame
                             </a>
                         @endif
                     </div>

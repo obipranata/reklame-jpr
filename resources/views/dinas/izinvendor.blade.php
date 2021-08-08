@@ -7,7 +7,7 @@
                 <h1 class="mt-4">Izin Vendor</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Izin Vendor</li>
+                    <li class="breadcrumb-item active">Izin Reklame</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
