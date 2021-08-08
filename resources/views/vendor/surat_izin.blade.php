@@ -45,7 +45,7 @@
 	@endforeach
 
 	@php
-		$lama_sewa = $surat_izin[0]->lama_sewa * 30;
+		$lama_sewa = $surat_izin[0]->lama_sewa;
         $tgl_penurunan = date('Y-m-d', strtotime((date($surat_izin[0]->tgl_pesan)) . "+ $lama_sewa day"));
 	@endphp
 	<center>
