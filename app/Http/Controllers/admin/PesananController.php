@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Pengajuan;
 
 class PesananController extends Controller
 {
@@ -28,7 +29,8 @@ class PesananController extends Controller
         // dd($pesanan);
 
         foreach ($pesanan as $p) {
-            $lama_sewa = $p->lama_sewa * 30;
+            // $lama_sewa = $p->lama_sewa * 30;
+            $lama_sewa = $p->lama_sewa;
             $tgl_penurunan = date('Y-m-d', strtotime((date($p->tgl_pesan)) . "+ $lama_sewa day"));
             $tgl1 = new DateTime(date('Y-m-d'));
             $tgl2 = new DateTime($tgl_penurunan);
@@ -53,13 +55,23 @@ class PesananController extends Controller
         $status = $request->status;
         DB::table('pesanan')->where('kd_pesan', $kd_pesan)->update(['status' => $status]);
 
+        $bukti_bayar = DB::table('bukti_bayar')->where('kd_pesan', $kd_pesan)->first();
+        if ($status == 'verifikasi sukses') {
+            $data_pengajuan = [
+                'kd_pesan' => $kd_pesan,
+                'foto_bukti' => $bukti_bayar->foto_bukti,
+                'status_pengajuan' => 'tunggu verifikasi dari dinas'
+            ];
+            Pengajuan::insert($data_pengajuan);
+        }
+
+
         return redirect('/admin/buktibayar');
     }
     public function updatepesan(Request $request, $kd_pesan)
     {
         $status = $request->status;
         DB::table('pesanan')->where('kd_pesan', $kd_pesan)->update(['status' => $status]);
-
         return redirect('/admin/pesanan');
     }
 

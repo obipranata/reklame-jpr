@@ -39,7 +39,7 @@
                                         <td>{{$p->ukuran}}</td>
                                         <td>{{number_format($pajak)}}</td>
                                         <td>{{$p->alamat}}</td>
-                                        <td class="text-center">{{$p->lama_sewa}} bulan</td>
+                                        <td class="text-center">{{$p->lama_sewa}} hari</td>
                                         <td class="text-center">{{$p->status_pengajuan}}</td>
                                         @if ($p->status_pengajuan == 'diizinkan')
                                             <td class="text-center text-success">

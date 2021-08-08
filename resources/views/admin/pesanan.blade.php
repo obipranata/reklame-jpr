@@ -38,7 +38,7 @@
                                         <td>{{$p->ukuran}}</td>
                                         <td>{{number_format($p->harga)}}</td>
                                         <td>{{$p->alamat}}</td>
-                                        <td class="text-center">{{$p->lama_sewa}} bulan</td>
+                                        <td class="text-center">{{$p->lama_sewa}} hari</td>
                                         <td class="text-center">{{$p->status_pesan}}</td>
                                         @if ($p->status_pesan == 'belum upload bukti pembayaran')
                                             <td class="text-center text-success">

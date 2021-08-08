@@ -84,7 +84,8 @@ data-stellar-background-ratio="0.5"
               @foreach ($pesanan as $p)
                 @if ($p->kd_reklame == $r->kd_reklame)
                   @php
-                    $lama_sewa = $p->lama_sewa * 30;
+                    // $lama_sewa = $p->lama_sewa * 30;
+                    $lama_sewa = $p->lama_sewa;
                     $tgl_penurunan = date('Y-m-d', strtotime((date($p->tgl_penurunan)) . "+ $lama_sewa day"));
                     $tgl1 = new DateTime(date('Y-m-d'));
                     $tgl2 = new DateTime($tgl_penurunan);
@@ -126,11 +127,11 @@ data-stellar-background-ratio="0.5"
         <div class="modal-body">
           <div class="form-group">
             <label for="tgl_pesan">Tgl Pesan</label>
-            <input type="date" class="form-control" id="tgl_pesan" name="tgl_pesan">
+            <input type="date" class="form-control" id="tgl_pesan" name="tgl_pesan" required>
           </div>
           <div class="form-group">
-            <label for="lama_sewa">Lama Sewa (<small>per Bulan</small>)</label>
-            <input type="text" class="form-control" id="lama_sewa" name="lama_sewa" placeholder="/bulan">
+            <label for="lama_sewa">Lama Sewa (<small>per Hari</small>)</label>
+            <input type="text" class="form-control" id="lama_sewa" name="lama_sewa" placeholder="/hari" required>
           </div>
         </div>
         <div class="modal-footer">

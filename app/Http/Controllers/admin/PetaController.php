@@ -22,7 +22,8 @@ class PetaController extends Controller
         foreach ($reklame as $dr) {
             foreach ($cek_pesanan as $c) {
                 if ($dr->kd_reklame == $c->kd_reklame) {
-                    $lama_sewa = $c->lama_sewa * 30;
+                    // $lama_sewa = $c->lama_sewa * 30;
+                    $lama_sewa = $c->lama_sewa;
                     $tgl_penurunan = date('Y-m-d', strtotime((date($c->tgl_pesan)) . "+ $lama_sewa day"));
                     // dd($tgl_penurunan);
             
@@ -100,7 +101,8 @@ class PetaController extends Controller
         foreach ($reklame as $dr) {
             foreach ($cek_pesanan as $c) {
                 if ($dr->kd_reklame == $c->kd_reklame) {
-                    $lama_sewa = $c->lama_sewa * 30;
+                    // $lama_sewa = $c->lama_sewa * 30;
+                    $lama_sewa = $c->lama_sewa;
                     $tgl_penurunan = date('Y-m-d', strtotime((date($c->tgl_pesan)) . "+ $lama_sewa day"));
                     // dd($tgl_penurunan);
             

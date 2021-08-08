@@ -39,7 +39,7 @@
                                         <td>{{$p->ukuran}}</td>
                                         <td>{{number_format($p->harga)}}</td>
                                         <td>{{$p->alamat}}</td>
-                                        <td class="text-center">{{$p->lama_sewa}} bulan</td>
+                                        <td class="text-center">{{$p->lama_sewa}} hari</td>
                                         <td class="text-center">
                                             <a href="/foto_bukti/{{$p->foto_bukti}}" >lihat</a>
                                         </td>

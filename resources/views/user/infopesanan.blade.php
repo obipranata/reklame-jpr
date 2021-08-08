@@ -49,40 +49,52 @@ data-stellar-background-ratio="0.5"
                       @php
                           $pesan = '';
                       @endphp
-                   
                     @foreach ($pesanan as $p)
-                    @foreach ($vendor as $v)
-                      @if ($p->level == 2)
-                        @if ($v->email == $p->email)
+                      @foreach ($vendor as $v)
+                        @if ($p->level == 2)
+                          @if ($v->email == $p->email)
+                            @php
+                                $no_rek = $v->no_rek;
+                            @endphp
+                          @endif
+                        @else
                           @php
-                              $no_rek = $v->no_rek;
+                              $no_rek = '1234567';
                           @endphp
                         @endif
-                      @else
-                        @php
-                            $no_rek = '1234567';
-                        @endphp
-                      @endif
-                    @endforeach
+                      @endforeach
   
-                    @foreach ($pengajuan as $pj)
-                        @if ($p->level == 2)
-                            @if ($p->kd_pesan == $pj->kd_pesan)
-                              @if ($pj->status_pengajuan == 'diizinkan')
-                                @php
-                                    $pesan = 'sudah diizinkan dinas';
-                                @endphp
-                              @else
-                                @php
-                                    $pesan = 'belum diizinkan dinas';
-                                @endphp
+                      @foreach ($pengajuan as $pj)
+                          @if ($p->level == 2)
+                              @if ($p->kd_pesan == $pj->kd_pesan)
+                                @if ($pj->status_pengajuan == 'diizinkan')
+                                  @php
+                                      $pesan = 'sudah diizinkan dinas';
+                                  @endphp
+                                @else
+                                  @php
+                                      $pesan = 'belum diizinkan dinas';
+                                  @endphp
+                                @endif
                               @endif
-                            @endif
-                        @else
-                            @php
-                                $pesan = '-';
-                            @endphp
-                        @endif
+                          @elseif ($p->level == 1)
+                              @php
+                                  $pesan = '-';
+                              @endphp
+
+                              @if ($p->kd_pesan == $pj->kd_pesan)
+                                @if ($pj->status_pengajuan == 'diizinkan')
+                                    @php
+                                        $status_izin = 'true';
+                                    @endphp
+                                @else
+                                    @php
+                                        $status_izin = 'false';
+                                    @endphp
+                                @endif
+                              @endif
+                          @endif
+
                       @endforeach
                       <tr>
                         <td>{{$p->tgl_pesan}}</td>
@@ -90,7 +102,7 @@ data-stellar-background-ratio="0.5"
                         <td>{{$p->name}}</td>
                         <td>{{$p->email}}</td>
                         <td>{{number_format($p->harga * $p->lama_sewa)}}</td>
-                        <td class="text-center">{{$p->lama_sewa}} Bulan</td>
+                        <td class="text-center">{{$p->lama_sewa}} hari</td>
                         <td>{{$no_rek}}</td>
                         <td>
                           {{$p->status_pesanan}}
@@ -108,12 +120,14 @@ data-stellar-background-ratio="0.5"
                             -
                           @elseif($p->status_pesanan == 'verifikasi sukses')
                             @if ($p->level == 1)
-                              <a class="" href="/user/downloadsurat/{{$p->kd_pesan}}" onclick="event.preventDefault(); document.getElementById('surat-izin').submit();">
-                                Download Surat
-                              </a>
-                              <form id="surat-izin" action="/user/downloadsurat/{{$p->kd_pesan}}" method="POST">
-                                  @csrf
-                              </form>
+                              @if ($status_izin == 'true')
+                                <a class="" href="/user/downloadsurat/{{$p->kd_pesan}}" onclick="event.preventDefault(); document.getElementById('surat-izin').submit();">
+                                  Download Surat
+                                </a>
+                                <form id="surat-izin" action="/user/downloadsurat/{{$p->kd_pesan}}" method="POST">
+                                    @csrf
+                                </form>
+                              @endif
                             @elseif($p->level == 2)
                               -
                             @endif

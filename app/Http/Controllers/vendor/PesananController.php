@@ -29,7 +29,8 @@ class PesananController extends Controller
         // dd($pesanan);
 
         foreach ($pesanan as $p) {
-            $lama_sewa = $p->lama_sewa * 30;
+            // $lama_sewa = $p->lama_sewa * 30;
+            $lama_sewa = $p->lama_sewa;
             $tgl_penurunan = date('Y-m-d', strtotime((date($p->tgl_pesan)) . "+ $lama_sewa day"));
             $tgl1 = new DateTime(date('Y-m-d'));
             $tgl2 = new DateTime($tgl_penurunan);

@@ -38,7 +38,8 @@ class UserController extends Controller
         foreach ($reklame as $dr) {
             foreach ($cek_pesanan as $c) {
                 if ($dr->kd_reklame == $c->kd_reklame) {
-                    $lama_sewa = $c->lama_sewa * 30;
+                    // $lama_sewa = $c->lama_sewa * 30;
+                    $lama_sewa = $c->lama_sewa;
                     $tgl_penurunan = date('Y-m-d', strtotime((date($c->tgl_pesan)) . "+ $lama_sewa day"));
                     // dd($tgl_penurunan);
             
@@ -105,7 +106,8 @@ class UserController extends Controller
         foreach ($reklame as $dr) {
             foreach ($cek_pesanan as $c) {
                 if ($dr->kd_reklame == $c->kd_reklame) {
-                    $lama_sewa = $c->lama_sewa * 30;
+                    // $lama_sewa = $c->lama_sewa * 30;
+                    $lama_sewa = $c->lama_sewa;
                     $tgl_penurunan = date('Y-m-d', strtotime((date($c->tgl_pesan)) . "+ $lama_sewa day"));
                     // dd($tgl_penurunan);
             
@@ -191,7 +193,8 @@ class UserController extends Controller
         }
 
         if (!empty($pesanan)) {
-            $lama_sewa = $pesanan[0]->lama_sewa * 30;
+            // $lama_sewa = $pesanan[0]->lama_sewa * 30;
+            $lama_sewa = $pesanan[0]->lama_sewa;
             $tgl_penurunan = date('Y-m-d', strtotime((date($pesanan[0]->tgl_penurunan)) . "+ $lama_sewa day"));
             $tgl1 = new DateTime($request->tgl_pesan);
             $tgl2 = new DateTime($tgl_penurunan);
