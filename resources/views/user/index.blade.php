@@ -206,7 +206,7 @@ data-stellar-background-ratio="0.5"
             @endforeach
             <span class="excerpt d-block">{{$r->nama_wilayah}}</span>
             <span class="price">Rp <span class="number1">{{number_format($r->harga)}}</span>
-              <sub>/bulan</sub></span>
+              <sub>/hari</sub></span>
             <ul class="pricing-text mb-5">
               <li><span class="{{$class}}"></span>{{$status}}</li>
               <li><span class="fa fa-map-marker mr-2 text-success"></span>{{$r->alamat}}</li>
